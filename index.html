@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Produk Sembako</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="image/logo.png" alt="Logo" width="40" />
+      <span>Sembako Alek</span>
+    </div>
+    <nav class="menu">
+      <button onclick="showSection('products')">Produk</button>
+      <button onclick="showSection('cart')">Keranjang (<span id="cartCount">0</span>)</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="productSection" class="section-padding">
+      <h2 class="section-title">Produk Unggulan Kami</h2>
+      <input type="text" id="searchInput" placeholder="Cari produk..." class="search-input">
+      <div id="productList" class="product-grid">
+        <div class="product-card">
+          <img src="image/beras.jpg" alt="Beras SPHP" class="product-image" />
+          <div class="product-info">
+            <h3>Beras SPHP</h3>
+            <p class="product-price">Rp 75.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Beras SPHP', 75000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="image/minyak.jpg" alt="Minyak Goreng Rose Brand" class="product-image" />
+          <div class="product-info">
+            <h3>Minyak Rose Brand</h3>
+            <p class="product-price">Rp 27.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Minyak Rose Brand', 27000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="image/hula2.jpg" alt="Gula CSR" class="product-image" />
+          <div class="product-info">
+            <h3>Gula CSR</h3>
+            <p class="product-price">Rp 18.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Gula CSR', 18000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="image/tepung.jpg" alt="Tepung FS" class="product-image" />
+          <div class="product-info">
+            <h3>Tepung FS</h3>
+            <p class="product-price">Rp 13.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Tepung FS', 13000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="image/mie gelas.jpg" alt="Mie Gelas" class="product-image" />
+          <div class="product-info">
+            <h3>Mie Gelas</h3>
+            <p class="product-price">Rp 2.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Mie Gelas', 2000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="image/daging.jpg" alt="Daging Perenn" class="product-image" />
+          <div class="product-info">
+            <h3>Daging Perenn</h3>
+            <p class="product-price">Rp 38.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Daging Perenn', 38000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="image/telur.jpg" alt="Telur Omega" class="product-image" />
+          <div class="product-info">
+            <h3>Telur Omega</h3>
+            <p class="product-price">Rp 45.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Telur Omega', 45000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="image/garam.jpg" alt="Garam Pyramid" class="product-image" />
+          <div class="product-info">
+            <h3>Garam Pyramid</h3>
+            <p class="product-price">Rp 4.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Garam Pyramid', 4000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="image/susu.jpg" alt="Susu SGM" class="product-image" />
+          <div class="product-info">
+            <h3>Susu SGM</h3>
+            <p class="product-price">Rp 90.000</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Susu SGM', 90000)">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cartSection" class="section-padding" style="display: none;">
+      <h2 class="section-title">Keranjang Belanja Anda</h2>
+      <div id="cartItems" class="cart-list"></div>
+      <p class="total">Total: Rp <span id="totalPrice">0</span></p>
+      <div class="checkout-container">
+        <button class="checkout-button" onclick="checkout()">Check Out</button>
+      </div>
+    </section>
+
+    <section class="testimonial-section section-padding">
+      <h2 class="section-title">🌟 Apa Kata Pelanggan Kami? 🌟</h2>
+      <div class="testimonial-container">
+        <div class="testimonial-card">
+          <img src="image/ngomong.jpg" alt="Natan" class="testimonial-avatar">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p>"Premium semua, harus kesini! Pengiriman cepat dan barang berkualitas!"</p>
+          <strong>- Natan, Bumi Ayu</strong>
+        </div>
+        <div class="testimonial-card">
+          <img src="image/ngomong.jpg" alt="Asep" class="testimonial-avatar">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p>"Suka banget sama packaging-nya yang rapi dan aman. Pasti bakal repeat order!"</p>
+          <strong>- Asep, Sawangan</strong>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      document.getElementById('cartCount').textContent = cart.length;
+      updateCartDisplay();
+      alert(`${name} telah ditambahkan ke keranjang!`); // Notifikasi setelah menambahkan
+    }
+
+    function updateCartDisplay() {
+      const cartItemsDiv = document.getElementById('cartItems');
+      const totalSpan = document.getElementById('totalPrice');
+      cartItemsDiv.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = '<p class="empty-cart-message">Keranjang Anda kosong. Yuk, tambahkan produk favorit Anda!</p>';
+      } else {
+        cart.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.classList.add('cart-item');
+          div.innerHTML = `
+            <span>${item.name} - Rp ${item.price.toLocaleString()}</span>
+            <button class="remove-from-cart-btn" onclick="removeFromCart(${index})"><i class="fas fa-times-circle"></i></button>
+          `;
+          cartItemsDiv.appendChild(div);
+          total += item.price;
+        });
+      }
+      totalSpan.textContent = total.toLocaleString();
+    }
+
+    function removeFromCart(index) {
+      const removedItem = cart.splice(index, 1);
+      document.getElementById('cartCount').textContent = cart.length;
+      updateCartDisplay();
+      alert(`${removedItem[0].name} telah dihapus dari keranjang.`);
+    }
+
+    function showSection(section) {
+      document.getElementById('productSection').style.display = section === 'products' ? 'block' : 'none';
+      document.getElementById('cartSection').style.display = section === 'cart' ? 'block' : 'none';
+      if (section === 'cart') {
+        updateCartDisplay(); // Memastikan tampilan keranjang diperbarui saat dibuka
+      }
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Keranjang Anda masih kosong. Silakan tambahkan produk sebelum checkout!");
+        return;
+      }
+      alert("Terima kasih! Pesanan Anda telah berhasil diproses.");
+      cart = [];
+      updateCartDisplay();
+      document.getElementById('cartCount').textContent = 0;
+      showSection('products');
+    }
+
+    // Fungsi pencarian produk
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+      const searchTerm = this.value.toLowerCase();
+      const productCards = document.querySelectorAll('.product-card');
+
+      productCards.forEach(card => {
+        const productName = card.querySelector('h3').textContent.toLowerCase();
+        if (productName.includes(searchTerm)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>
